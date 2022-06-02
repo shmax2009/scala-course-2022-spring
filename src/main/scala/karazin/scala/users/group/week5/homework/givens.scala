@@ -16,7 +16,7 @@ object givens:
 
   given StringEncoder: JsonEncoder[String] with
     def encode(element: String): String =
-      '"' + element + '"'
+      "'" + element + "'"
 
 
   given IntEncoder: JsonEncoder[Int] with
@@ -31,13 +31,8 @@ object givens:
 
   given ListEncoder[T] (using encoder: JsonEncoder[T]): JsonEncoder[List[T]] with
     def encode(element_List: List[T]): String =
-      @tailrec
-      def encode_elements(elementList: List[T], pos: Int, ans: String): String =
-        if pos == elementList.length then ans
-        else if pos == elementList.length-1 then encode_elements(elementList, pos + 1, ans + encoder.encode(elementList(pos)))
-        else encode_elements(elementList, pos + 1, ans + encoder.encode(elementList(pos)) + ",")
-
-      '[' + encode_elements(element_List, 0, "") + ']';
+      val res = element_List.map(element => encoder.encode(element)).mkString(",")
+      s"[$res]"
 
 
 /*
