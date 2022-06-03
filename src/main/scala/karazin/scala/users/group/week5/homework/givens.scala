@@ -31,8 +31,8 @@ object givens:
 
   given ListEncoder[T] (using encoder: JsonEncoder[T]): JsonEncoder[List[T]] with
     def encode(element_List: List[T]): String =
-      val res = element_List.map(element => encoder.encode(element)).mkString(",")
-      s"[$res]"
+      val res = element_List.map(element => encoder.encode(element)).mkString("[",",","]")
+      res
 
 
 /*
