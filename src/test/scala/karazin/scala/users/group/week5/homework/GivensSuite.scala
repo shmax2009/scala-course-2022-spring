@@ -26,6 +26,13 @@ class GivensSuite extends munit.FunSuite :
   test("string encoder test") {
     assert(program.encode("test1234😶") == "'test1234😶'")
   }
+  test("null string encoder test") {
+    assert(program.encode("") == "''")
+  }
+
+  test("null List encoder test") {
+    assert(program.encode(List.empty[Int]) == "[]")
+  }
 
   test("List encoder test") {
     assert(program.encode(List(1, 2, 3)) == "[1,2,3]")
