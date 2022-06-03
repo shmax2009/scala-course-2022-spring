@@ -16,12 +16,12 @@ lazy val commonSettings = Seq(
   scalacOptions ++= Seq(
     "-feature",
     "-deprecation",
-    "-Xfatal-warnings",
+    "-Xfatal-warnings"
   ),
   javacOptions ++= Seq(
     "-source", "11",
     "-target", "11"
-  ),
+  )
 )
 
 lazy val dependencies =
